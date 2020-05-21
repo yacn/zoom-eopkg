@@ -1,0 +1,46 @@
+name: zoom
+version: 5.0.408598.0517
+release: 1
+source: 
+  - https://zoom.us/client/latest/zoom_amd64.deb: 65e63f756a78fabd3d848f2ce16d47c492fb12fd917f79e60cb2025b4d1e2089
+license: see https://zoom.us
+summary: "Zoom, #1 Video Conferencing and Web Conferencing Service"
+component: network.web
+description: |
+  Zoom, the cloud meeting company, unifies cloud video conferencing, simple online
+  meetings, and group messaging into one easy-to-use platform. Our solution offers
+  the best video, audio, and screen-sharing experience across Zoom Rooms, Windows,
+  Mac, Linux, iOS, Android, and H.323/SIP room systems.
+# list extracted from debian control file
+builddeps:
+  - pkgconfig(glib-2.0) # libglib2.0-0
+  - pkgconfig(xcb-shape) # libxcb-shape0
+  - pkgconfig(xcb-shm) # libxcb-shm0
+  - pkgconfig(xcb-xfixes) # libxcb-xfixes0
+  - pkgconfig(xcb-randr) # libxcb-randr0
+  - pkgconfig(xcb-image) # libxcb-image0
+  - pkgconfig(fontconfig) # libfontconfig1
+  - pkgconfig(egl) # libegl1-mesa
+  - pkgconfig(xi) # libxi6
+  - pkgconfig(sm) # libsm6
+  - pkgconfig(xrender) # libxrender1
+  - pkgconfig(libpulse) # libpulse0
+  - pkgconfig(xcomposite) # libxcomposite1
+  - pkgconfig(libxslt) # libxslt1.1
+  - pkgconfig(sqlite3) # libsqlite3-0
+  - pkgconfig(xcb-keysyms) # libxcb-keysyms1
+  - pkgconfig(xcb-xtest) # libxcb-xtest0
+  - pkgconfig(dbus-1) # libdbus-1-3
+  - pkgconfig(xtst) # libxtst6
+  - pkgconfig(ibus-1.0) # ibus
+setup: |
+  ar x $sources/zoom_amd64.deb
+  tar xf data.tar.*
+install: |
+  mkdir -p $installdir
+  cp -r usr $installdir/
+  cp -r opt/zoom $installdir/usr/share/  
+  ln -sfn /usr/share/zoom/ZoomLauncher $installdir/usr/bin/zoom
+
+  # fix desktop entry
+  sed -i 's|^Categories=Network;Application;$|Categories=Network|' $installdir/usr/share/applications/Zoom.desktop

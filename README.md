@@ -21,3 +21,18 @@ $ echo "include ../Makefile.common" > Makefile
 $ make
 $ ls *.eopkg
 ```
+
+## Refreshing `package.yml`
+
+To fetch latest deb, get version, calculate new checksum, and bump release:
+
+```
+$ ./refresh.py
+```
+
+If you already have the verison, checksum, and release:
+
+```
+$ ./update-package-yml.sh $version $checksum $release < package.yml > package.yml.tmp
+$ mv package.yml{.tmp,}
+```

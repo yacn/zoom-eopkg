@@ -1,0 +1,8 @@
+env/
+abi_used_libs
+pspec_x86_64.xml
+Makefile
+package.yml.bak
+*.deb
+*.etag
+*.eopkg

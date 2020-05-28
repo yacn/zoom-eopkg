@@ -16,6 +16,6 @@ version="$1"
 checksum="$2"
 release="$3"
 
-sed "s/version: [0-9.]\+$/version: $version/" < /dev/stdin \
-| sed "s/zoom_amd64.deb: [0-9a-z]\+$/zoom_amd64.deb: $checksum/" \
-| sed "s/release: [0-9]\+$/release: $release/"
+sed -E "s/version(\s+)?: [0-9.]+$/version\1: $version/" < /dev/stdin \
+| sed -E "s/zoom_amd64.deb : [0-9a-z]+$/zoom_amd64.deb : $checksum/" \
+| sed -E "s/release(\s+)?: [0-9]+$/release\1: $release/"

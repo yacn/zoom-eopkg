@@ -1,8 +1,8 @@
 name       : zoom
-version    : 5.0.408598.0517
-release    : 1
+version    : 5.0.413237.0524
+release    : 2
 source     :
-    - https://zoom.us/client/latest/zoom_amd64.deb : 65e63f756a78fabd3d848f2ce16d47c492fb12fd917f79e60cb2025b4d1e2089
+    - https://zoom.us/client/latest/zoom_amd64.deb : 6e5e53b3f3c6948fe93fa9a95b5a5a02af3537d0edbca823d7587c043cbd0ed1
 license    : see https://zoom.us
 summary    : 'Zoom, #1 Video Conferencing and Web Conferencing Service'
 component  : network.web

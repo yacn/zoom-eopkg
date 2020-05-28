@@ -16,7 +16,7 @@ already cloned:
 
 ```
 $ git clone https://github.com/yacn/zoom-eopkg.git "$SOLUS_PKG_DIR/zoom"
-$ cd "$SOLUS_PKG_DIR"
+$ cd "$SOLUS_PKG_DIR/zoom"
 $ echo "include ../Makefile.common" > Makefile
 $ make
 $ ls *.eopkg

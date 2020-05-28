@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import os
 import shlex
 import subprocess
@@ -8,6 +9,10 @@ import tempfile
 import time
 
 import yaml
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--build", help="kick off build after updating package.yml", action='store_true', default=False)
+args = parser.parse_args()
 
 """
 1. Download package
@@ -19,7 +24,7 @@ import yaml
 """
 
 with open('package.yml', 'r') as f:
-    data = yaml.load(f)
+    data = yaml.load(f, Loader=yaml.SafeLoader)
 
 # package.yml source field is a list of dicts where dict key is url and dict value is sha256sum
 # there's only one source here so flatten to the two items we need:
@@ -83,3 +88,7 @@ with tempfile.NamedTemporaryFile(dir=os.getcwd()) as tmpfp:
     os.link(package_dot_yml, package_dot_yml_dot_bak)
     os.unlink(package_dot_yml)
     os.link(tmpfp.name, package_dot_yml)
+
+if args.build:
+    print("building eopkg")
+    subprocess.check_output(shlex.split('make'))
